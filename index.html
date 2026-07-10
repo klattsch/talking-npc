@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>talking npc - a klattsch demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>talking npc</h1>
+    <p class="sub">
+      a web game character voiced live by
+      <a href="https://github.com/tgies/klattsch">klattsch</a>,
+      a formant speech synthesizer. there are no audio files here; every line
+      is synthesized at click time. view source; the whole thing is one short
+      <a href="main.js">main.js</a>.
+    </p>
+
+    <div class="scene">
+      <div class="bubble" id="bubble" hidden><span id="bubble-text"></span></div>
+      <button class="npc" id="npc" aria-label="talk to the innkeeper">
+        <span class="eyes"><span class="eye"></span><span class="eye"></span></span>
+        <span class="mouth" id="mouth"></span>
+      </button>
+      <p class="hint" id="hint">click the innkeeper</p>
+    </div>
+
+    <form id="custom" class="custom">
+      <input id="phonemes" type="text" spellcheck="false"
+             value="Y UW . K AH N . M EY K . M IY . S EY . EH N IY TH IH NG"
+             aria-label="ARPABET phoneme string">
+      <button type="submit">say</button>
+    </form>
+    <p class="sub small">
+      type <a href="https://en.wikipedia.org/wiki/ARPABET">ARPABET</a> phonemes.
+      <code>b</code> pitch, <code>r</code> speed, <code>bC4</code> sings a note.
+      full syntax at <a href="https://klatts.ch/play/">klatts.ch/play</a>.
+    </p>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

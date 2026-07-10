@@ -1,0 +1,111 @@
+:root {
+  --bg: #141414;
+  --fg: #d6d6d6;
+  --accent: #ff6a00;
+  --dim: #888;
+  --panel: #1d1d1d;
+  --line: #333;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  max-width: 560px;
+  padding: 24px 16px 48px;
+}
+
+h1 { color: var(--accent); font-size: 28px; margin: 0 0 4px; }
+a { color: var(--accent); }
+.sub { color: var(--dim); margin-top: 0; }
+.small { font-size: 13px; }
+code { background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+
+.scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0 8px;
+}
+
+.bubble {
+  position: absolute;
+  top: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  max-width: 90%;
+}
+
+.npc {
+  width: 140px;
+  height: 130px;
+  background: var(--panel);
+  border: 2px solid var(--accent);
+  border-radius: 28px 28px 20px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0;
+}
+.npc:active { transform: scale(0.97); }
+
+.eyes { display: flex; gap: 28px; }
+.eye {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blink 4.7s infinite;
+}
+@keyframes blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+.mouth {
+  width: 44px;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--accent);
+  transition: height 60ms;
+}
+
+.hint { color: var(--dim); font-size: 13px; }
+
+.custom { display: flex; gap: 8px; margin-top: 16px; }
+.custom input {
+  flex: 1;
+  background: #0c0c0c;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--fg);
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  padding: 8px 10px;
+}
+.custom button {
+  background: var(--accent);
+  color: #141414;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+}
