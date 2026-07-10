@@ -89,6 +89,25 @@ code { background: var(--panel); padding: 1px 5px; border-radius: 4px; }
 
 .hint { color: var(--dim); font-size: 13px; }
 
+.voice-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+.voice-row button {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--fg);
+  font-size: 13px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.voice-row button:hover { border-color: var(--accent); }
+.voice-row code { color: var(--dim); }
+
 .custom { display: flex; gap: 8px; margin-top: 16px; }
 .custom input {
   flex: 1;

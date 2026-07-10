@@ -22,6 +22,10 @@ const { schedule } = compileString('b105 r190 HH AH L OW . T R AE V AH L ER');
 node.port.postMessage({ type: 'schedule', schedule });
 ```
 
+The **new innkeeper** button rolls a random voice. A character's voice is just
+a short directive string, so `rollVoice()` makes one up from a few random
+numbers.
+
 In a bundled project (Phaser, PixiJS, anything with Vite/webpack), `npm install
 klattsch` and import from `'klattsch'` instead; the API is the same. See the
 [klattsch README](https://github.com/tgies/klattsch) for that, polyphony, and

@@ -9,8 +9,8 @@ import { compileString } from 'https://esm.sh/klattsch@0.7.0';
 const WORKLET_URL = 'https://esm.sh/klattsch@0.7.0/formant-worklet.js';
 
 // The innkeeper's voice: base pitch 105 Hz, 190 ms per phoneme, a little
-// breath. Every line gets this prefix.
-const VOICE = 'b105 r190 h0.08';
+// breath. Every line gets this prefix; see rollVoice() for inventing one.
+let voice = 'b105 r190 h0.08';
 
 const LINES = [
   'HH AH L OW . T R AE V AH L ER',                       // hello, traveler
@@ -71,11 +71,30 @@ function animateMouth() {
 
 let nextLine = 0;
 npc.addEventListener('click', () => {
-  say(`${VOICE} ${LINES[nextLine++ % LINES.length]}`);
+  say(`${voice} ${LINES[nextLine++ % LINES.length]}`);
 });
 
 document.getElementById('custom').addEventListener('submit', (e) => {
   e.preventDefault();
   const text = document.getElementById('phonemes').value.trim();
-  if (text) say(`${VOICE} ${text}`);
+  if (text) say(`${voice} ${text}`);
+});
+
+// A voice is a few numbers: pitch, speed, formant scale (s below 1 reads as
+// a bigger creature), sometimes vibrato or breath.
+const rand = (lo, hi, digits = 0) => (lo + Math.random() * (hi - lo)).toFixed(digits);
+function rollVoice() {
+  const parts = [`b${rand(70, 230)}`, `r${rand(140, 280)}`, `s${rand(0.75, 1.35, 2)}`];
+  if (Math.random() < 0.5) parts.push(`v${rand(1, 5)} w${rand(4, 6.5, 1)}`);
+  if (Math.random() < 0.5) parts.push(`h${rand(0.05, 0.3, 2)}`);
+  return parts.join(' ');
+}
+
+const voiceLabel = document.getElementById('voice-string');
+voiceLabel.textContent = voice;
+document.getElementById('reroll').addEventListener('click', () => {
+  voice = rollVoice();
+  voiceLabel.textContent = voice;
+  nextLine = 0;
+  say(`${voice} ${LINES[0]}`);
 });
